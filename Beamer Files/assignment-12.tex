@@ -1,0 +1,96 @@
+\documentclass{beamer}
+\usetheme{CambridgeUS}
+
+\setbeamertemplate{caption}[numbered]{}
+
+\usepackage{enumitem}
+\usepackage{tfrupee}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{txfonts}
+
+\def\inputGnumericTable{}
+
+\usepackage[latin1]{inputenc}                                 
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                        
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}
+\usepackage{caption} 
+\captionsetup[table]{skip=3pt}  
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\renewcommand{\thefigure}{\arabic{table}}
+\renewcommand{\thetable}{\arabic{table}}                                     
+                               
+\title{AI1110 \\ Assignment 11}
+\author{U.S.M.M TEJA \\ CS21BTECH11059}
+\date{17th May 2022}
+
+
+\begin{document}
+	% The title page
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+	% The table of contents
+	\begin{frame}{Outline}
+    		\tableofcontents
+	\end{frame}
+	
+	% The question
+	\section{Question}
+	\begin{frame}{question 9.33}
+Find $S(\omega)$ 
+if a)  $R(\tau) = e^-{\alpha{\tau}^2}$
+b) $R(\tau) = e^-{\alpha{\tau}^2}\cos{\omega_0}$
+	\end{frame}
+
+\begin{frame}{first Part}
+a) take -i$\omega$ = s for simplicity
+\begin{align}
+   &\int_{-\infty}^{\infty} e^{-\alpha{\tau}^2}e^{-s\tau}d\tau &\\
+   & = e^{\frac{s^2}{4\alpha}}\int_{-\infty}^{\infty}e^{-\alpha(\tau + \frac{s}{2\alpha})^2}\tau &\\
+   & = \sqrt{\frac{\pi}{\alpha}}\times e^{\frac{s^2}{4\alpha}}& \\
+   & = \sqrt{\frac{\pi}{\alpha}}\times e^{\frac{-\omega^2}{4\alpha}}&
+\end{align}
+
+\end{frame}
+
+    \begin{frame}{second Part-1}
+ b) \begin{align}
+     & = \int_{-\infty}^{\infty} e^{-\alpha{\tau}^2}e^{-s\tau}\cos{\omega_0}d\tau &\\
+       & = \frac{\int_{-\infty}^{\infty} e^{-\alpha{\tau}^2 - s\tau}(e^{i\omega_0\tau} + e^{-i\omega_0\tau})}{2}d\tau & \\
+       & =  \frac{1}{2}\int_{-\infty}^{\infty}e^{-\alpha{\tau}^2- s\tau + i\omega_0\tau}dx + \frac{1}{2}\int_{-\infty}^{\infty}e^{-\alpha{\tau}^2- s\tau - i\omega_0\tau}dx& \\
+              \end{align}
+        first let us solve $\int_{-\infty}^{\infty}e^{-\alpha{\tau}^2- s\tau + i\omega_0\tau}dx $
+
+\end{frame}
+
+\begin{frame}{second part-2}
+   \begin{align}
+    & \int_{-\infty}^{\infty}e^{(\sqrt{-\alpha}x + \frac{i\omega+i\omega_0}{2\sqrt{-\alpha}})^2 + \frac{(i\omega+i\omega_0)^2}{4\alpha}} & \\
+\end{align}
+let u = $\frac{-2kx+i\omega+i\omega_0}{2\sqrt{k}}$
+So $\frac{du}{dx}$ = -$\sqrt{k}$
+\begin{align}
+    &= - \int_{-\infty}^{\infty} \frac{e^{-\frac{\sqrt{-k}u}{\sqrt{k}} + \frac{(i\sqrt{-k}(\omega+i\omega_0))^2}{4k}}}{\sqrt{k}} & \\
+    & = \frac{\sqrt{\pi}}{2\sqrt{k}} e^{\frac{-(\omega+i\omega_0)^2}{4k}}\int_{-\infty}^{\infty}2\frac{e^{-u^2}}{\sqrt{k}}du & \\
+      & = \int_{-\infty}^{\infty}2\frac{e^{-u^2}}{\sqrt{\pi}}du = 1& 
+   \end{align} 
+\end{frame}
+
+\begin{frame}{second Part-3}
+Therefore total integral is :
+    \begin{align}
+         & = \frac{\sqrt{\pi}}{2\sqrt{k}} e^{\frac{-(\omega+i\omega_0)^2}{4k}} + \frac{\sqrt{\pi}}{2\sqrt{k}} e^{\frac{-(\omega-i\omega_0)^2}{4k}}&
+    \end{align}
+\end{frame}
+
+\end{document}
